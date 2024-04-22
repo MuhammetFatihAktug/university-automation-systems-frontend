@@ -1,0 +1,43 @@
+.header-container {
+  display: flex;
+  align-self: start;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  background-color: #3f51b5;
+  border-radius: 10px;
+  border: black 1px solid;
+  padding: 10px;
+
+}
+
+.logo {
+  margin-right: 10px;
+  padding: 8px;
+  border-right: 1px solid white;
+}
+
+.logo img {
+  height: 75px;
+  width: 75px;
+}
+
+.university-info {
+  flex: 1;
+  padding: 15px;
+
+}
+
+.university-name {
+  color: white;
+  font-size: 24pt;
+  font-weight: bold;
+
+}
+
+.app-info {
+  padding: 15px;
+}
+
+.app-name {
+  color: white;
+  font-size: 16pt;
+}
