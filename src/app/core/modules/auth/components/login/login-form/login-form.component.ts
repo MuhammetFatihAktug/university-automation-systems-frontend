@@ -1,6 +1,6 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, EventEmitter, NgModule, Output} from '@angular/core';
 import {NgxCaptchaModule} from "ngx-captcha";
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 
 @Component({
@@ -11,14 +11,21 @@ import {CommonModule} from "@angular/common";
   styleUrl: './login-form.component.css'
 })
 export class LoginFormComponent {
+
   siteKey: string;
+
   showPassword: boolean = false;
+
   loginForm: FormGroup;
+
+  studentNumber: string = "";
+  studentPassword: string = "";
+
+  @Output() onSubmitLoginEvent = new EventEmitter;
 
   constructor(private formBuilder: FormBuilder) {
     this.siteKey = "6Lc-98wpAAAAANmQtrLV78NhB9gYYBHj3FShXV9M";
   }
-
 
   togglePassword(): void {
     this.showPassword = !this.showPassword;
@@ -29,13 +36,13 @@ export class LoginFormComponent {
       studentNumber: ['', [Validators.required]],
       studentPassword: ['', Validators.required]
     });
-    console.log(this.loginForm);
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
       console.log('Form submitted successfully');
-
+      this.onSubmitLoginEvent.emit({"studentNumber": this.studentNumber, "studentPassword": this.studentPassword})
+      console.log(this.onSubmitLoginEvent)
     } else {
       console.log('Form is invalid');
     }
