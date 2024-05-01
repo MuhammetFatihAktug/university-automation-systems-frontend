@@ -4,8 +4,8 @@
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Student Number input -->
       <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="****13171074"
-               formControlName="studentNumber" required>
+        <input type="text" class="form-control input-text" id="floatingInput" placeholder="****13171074"
+               formControlName="studentNumber" required >
         @if (loginForm.get('studentNumber').errors?.['required']) {
           <div class="invalid-feedback">Student Number is required</div>
         }
@@ -14,7 +14,7 @@
       <!-- Password input -->
       <div class="input-group mb-3">
         <div class="form-floating">
-          <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control" id="floatingInputGroup1"
+          <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control input-text" id="floatingInputGroup1"
                  formControlName="studentPassword" placeholder="Password" required>
           @if (loginForm.get('studentPassword').errors?.['required']) {
             <div class="invalid-feedback">Password is required</div>
