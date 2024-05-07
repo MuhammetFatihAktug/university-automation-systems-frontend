@@ -5,21 +5,26 @@
       <!-- Student Number input -->
       <div class="form-floating mb-3">
         <input type="text" class="form-control input-text" id="floatingInput" placeholder="****13171074"
-               formControlName="studentNumber" required [(ngModel)]="studentNumber">
-        @if (loginForm.get('studentNumber').errors?.['required']) {
-          <div class="invalid-feedback">Student Number is required</div>
-        }
+               formControlName="studentNumber" required>
+        <div *ngIf="loginForm.get('studentNumber').invalid && (loginForm.get('studentNumber').dirty || loginForm.get('studentNumber').touched)" class="invalid-feedback">
+          Student Number is required
+        </div>
         <label for="floatingInput">Student Number</label>
       </div>
       <!-- Password input -->
       <div class="input-group mb-3">
         <div class="form-floating">
-          <input type="{{ showPassword ? 'text' : 'password' }}" class="form-control input-text"
+          <input type="{{ showPassword ? 'text' : 'password' }}"
+                 class="form-control input-text"
                  id="floatingInputGroup1"
-                 formControlName="studentPassword" placeholder="Password" required [(ngModel)]="studentPassword">
-          @if (loginForm.get('studentPassword').errors?.['required']) {
-            <div class="invalid-feedback">Password is required</div>
-          }
+                 formControlName="studentPassword"
+                 placeholder="Password"
+                 required
+                 [ngClass]="{ 'ng-invalid': loginForm.get('studentPassword').invalid && (loginForm.get('studentPassword').dirty || loginForm.get('studentPassword').touched) }">
+
+          <div *ngIf="loginForm.get('studentPassword').invalid && (loginForm.get('studentPassword').dirty || loginForm.get('studentPassword').touched)" class="invalid-feedback">
+            Password is required
+          </div>
           <label for="floatingInputGroup1">Password</label>
         </div>
         <button class="btn btn-outline-secondary" type="button" (mouseenter)="togglePassword()"

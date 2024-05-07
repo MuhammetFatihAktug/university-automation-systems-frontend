@@ -40,9 +40,9 @@ export class LoginFormComponent {
 
   onSubmit() {
     if (this.loginForm.valid) {
-      console.log('Form submitted successfully');
-      this.onSubmitLoginEvent.emit({"studentNumber": this.studentNumber, "studentPassword": this.studentPassword})
-      console.log(this.onSubmitLoginEvent)
+      const studentNumber = this.loginForm.get('studentNumber').value;
+      const studentPassword = this.loginForm.get('studentPassword').value;
+      this.onSubmitLoginEvent.emit({ studentNumber, studentPassword });
     } else {
       console.log('Form is invalid');
     }
