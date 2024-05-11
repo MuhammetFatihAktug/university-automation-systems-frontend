@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">Alinan Dersler</h5>
+    <select class="form-select" aria-label="Default select example">
+      @for (semester of semesters; track $index) {
+        <option>{{ semester.semesterDate }} {{ semester.semesterPeriod }}</option>
+      }
+    </select>
+    <div id="selectedSemesterContent"></div>
+  </div>
+</div>

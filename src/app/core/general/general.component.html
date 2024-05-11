@@ -1,29 +1,19 @@
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
   <div class="row row-cols-1 row-cols-md-1 row-cols-lg-1 g-4">
-    <!-- Ders Programı -->
+
     <div class="col">
       <app-lessons-program></app-lessons-program>
     </div>
 
-    <div class="w-100"></div> <!-- This div creates a new row for spacing -->
 
-    <!-- Sınav Takvimi -->
     <div class="col">
       <app-exam-calendar></app-exam-calendar>
     </div>
-    <div class="w-100"></div> <!-- This div creates a new row for spacing -->
 
-    <!-- Alınan Dersler -->
+
     <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Enrolled Courses</h5>
-          <p class="card-text">Here you can see the courses you are enrolled in.</p>
-          <a href="#" class="btn btn-primary">Go to Enrolled Courses</a>
-        </div>
-      </div>
+      <app-my-lessons></app-my-lessons>
     </div>
-    <div class="w-100"></div> <!-- This div creates a new row for spacing -->
 
     <!-- Harç Bilgileri -->
     <div class="col">
@@ -35,17 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="w-100"></div> <!-- This div creates a new row for spacing -->
 
-    <!-- Genel Duyurular -->
-    <div class="col">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">General Announcements</h5>
-          <p class="card-text">Here you can find general announcements.</p>
-          <a href="#" class="btn btn-primary">Go to General Announcements</a>
-        </div>
-      </div>
-    </div>
+
   </div>
 </div>
