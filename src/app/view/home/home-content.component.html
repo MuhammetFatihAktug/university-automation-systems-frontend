@@ -1,2 +1,5 @@
-<app-student-home></app-student-home>
-
+@if (currentUserType == "student") {
+  <app-student-home></app-student-home>
+} @else if (currentUserType == "academic") {
+  <app-academic-home></app-academic-home>
+}

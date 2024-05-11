@@ -1,9 +1,10 @@
 import {Component} from '@angular/core';
 import {FooterComponent} from "../../../shared/components/footer/footer.component";
 import {HeaderComponent} from "../../../shared/components/header/header.component";
-import {NavbarComponent} from "../../../shared/components/navbar/navbar.component";
 import {StudentService} from "../../../shared/services/student.service";
 import {Student} from "../../../shared/models/student";
+import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+
 
 @Component({
   selector: 'app-student-home',
@@ -11,7 +12,9 @@ import {Student} from "../../../shared/models/student";
   imports: [
     FooterComponent,
     HeaderComponent,
-    NavbarComponent
+    RouterLink,
+    RouterOutlet,
+    RouterLinkActive,
   ],
   templateUrl: './student-home.component.html',
   styleUrl: './student-home.component.css'

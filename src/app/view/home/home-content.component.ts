@@ -13,5 +13,6 @@ import {AcademicHomeComponent} from "./academic-home/academic-home.component";
   styleUrl: './home-content.component.css'
 })
 export class HomeContentComponent {
+    currentUserType:string = "student"  ;
 
 }

@@ -13,6 +13,7 @@ export class StudentService {
   }
 
   getStudent() {
+
     this.student = {
       studentNumber: "201913171074",
       name: 'John',

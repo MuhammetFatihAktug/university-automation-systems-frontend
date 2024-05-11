@@ -6,6 +6,7 @@ import {AxiosService} from './axios.service';
 })
 export class AuthService {
 
+  authState: boolean = true;
 
   constructor(private axiosService: AxiosService) {
   }
@@ -20,9 +21,11 @@ export class AuthService {
       }
     ).then(value => {
       this.axiosService.setAuthToken(value.data.token);
+      this.authState = true;
       return value.data;
     }).catch(error => {
       console.error(error);
+      this.authState = false;
       throw error;
     });
   }

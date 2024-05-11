@@ -2,7 +2,7 @@ import {Component, NgModule} from '@angular/core';
 import {RouterLink, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./shared/components/header/header.component";
 import {FooterComponent} from "./shared/components/footer/footer.component";
-import {routes} from "./app.routes";
+
 import {ContentComponent} from "./view/content.component";
 
 
@@ -16,8 +16,5 @@ import {ContentComponent} from "./view/content.component";
 export class AppComponent {
   title = 'collage-automation-systems-frontend';
 
-  ngOnInit(){
-
-  }
 
 }
