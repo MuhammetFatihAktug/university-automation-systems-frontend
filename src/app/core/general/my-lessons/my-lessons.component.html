@@ -1,11 +1,44 @@
+<!-- semester.component.html -->
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Alinan Dersler</h5>
-    <select class="form-select" aria-label="Default select example">
-      @for (semester of semesters; track $index) {
-        <option>{{ semester.semesterDate }} {{ semester.semesterPeriod }}</option>
+    <select class="form-select" (change)="selectedSemester($event.target)">
+      @for (date of semesters; track $index) {
+        <option selected [value]="date.semesterDate" >{{ date.semesterDate }} {{date.semesterPeriod}}</option>
       }
     </select>
-    <div id="selectedSemesterContent"></div>
+    <div >
+      @if(selectedSemester !== null){
+        <p>Ders Girisi Yapilmamis</p>
+
+        <table class="table table-bordered">
+          <thead class="table-dark">
+          <tr>
+            <th scope="col">Ders Adı</th>
+            <th scope="col">Ders Kodu</th>
+            <th scope="col">Akademisyen</th>
+          </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let lesson of lessons">
+              <td>{{ lesson.name }}</td>
+              <td>{{ lesson.code }}</td>
+              <td>{{ lesson.academician }}</td>
+            </tr>
+
+          <ng-template #noLessons>
+            <tr>
+              <td colspan="3">Ders Kaydı Yapılmamış!</td>
+            </tr>
+          </ng-template>
+          </tbody>
+        </table>
+
+
+      } @else {
+        <p>{{selectedSemester}}</p>
+      }
+    </div>
   </div>
 </div>

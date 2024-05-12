@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {LessonsProgramComponent} from "./lessons-program/lessons-program.component";
 import {ExamCalendarComponent} from "./exam-calendar/exam-calendar.component";
 import {MyLessonsComponent} from "./my-lessons/my-lessons.component";
+import {TuitionInfoComponent} from "./tuition-info/tuition-info.component";
 
 @Component({
   selector: 'app-general',
@@ -9,7 +10,8 @@ import {MyLessonsComponent} from "./my-lessons/my-lessons.component";
   imports: [
     LessonsProgramComponent,
     ExamCalendarComponent,
-    MyLessonsComponent
+    MyLessonsComponent,
+    TuitionInfoComponent
   ],
   templateUrl: './general.component.html',
   styleUrl: './general.component.css'
