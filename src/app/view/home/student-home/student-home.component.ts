@@ -4,6 +4,7 @@ import {HeaderComponent} from "../../../shared/components/header/header.componen
 import {StudentService} from "../../../shared/services/student.service";
 import {Student} from "../../../shared/models/student";
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
+import {StudentCourse} from "../../../shared/models/studentCourse";
 
 
 @Component({
@@ -21,9 +22,29 @@ import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/route
 })
 export class StudentHomeComponent {
   student: Student;
+  studentCourse: StudentCourse[];
 
   constructor(private studentService: StudentService) {
-    this.student = studentService.getStudent();
+
   }
 
+  ngOnInit(): void {
+    this.studentService.getStudent()
+      .then(student => {
+        this.student = student;
+        console.log('Student data:', this.student);
+      })
+      .catch(error => {
+        console.error('Error fetching student data:', error);
+      });
+
+    this.studentService.getStudentCourse()
+      .then(studentCourse => {
+        this.studentCourse = studentCourse;
+        console.log('Student Course data:', this.studentCourse);
+      })
+      .catch(error => {
+        console.error('Error fetching student course data:', error);
+      });
+  }
 }

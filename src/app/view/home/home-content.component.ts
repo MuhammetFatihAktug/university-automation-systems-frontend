@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {StudentHomeComponent} from "./student-home/student-home.component";
 import {AcademicHomeComponent} from "./academic-home/academic-home.component";
+import {StudentService} from "../../shared/services/student.service";
 
 @Component({
   selector: 'app-home-content',
@@ -14,5 +15,6 @@ import {AcademicHomeComponent} from "./academic-home/academic-home.component";
 })
 export class HomeContentComponent {
     currentUserType:string = "student"  ;
+
 
 }

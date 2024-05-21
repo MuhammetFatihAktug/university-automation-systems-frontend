@@ -24,18 +24,12 @@ export class AxiosService {
   }
 
 
-  request(method: string, url: string, data: any) {
-    let headers = {};
-
-    if (this.getAuthToken() !== null && this.getAuthToken() !== '') {
-      headers = {"Authorization": "Bearer " + this.getAuthToken()}
-    }
+  request(method: string, url: string, params: any) {
 
     return axios({
       method: method,
       url: url,
-      data: data,
-      headers: headers
+      params: params,
     });
   }
 }

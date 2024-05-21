@@ -2,19 +2,19 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse order-1" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="general" routerLinkActive="active">General </a>
-        <a class="nav-link" routerLink="course" routerLinkActive="active">Course and Semester </a>
+        <a class="nav-link active" aria-current="page" routerLink="general" routerLinkActive="active">Genel </a>
+        <a class="nav-link" routerLink="course" routerLinkActive="active">Ders ve Donem </a>
         <a class="nav-link" routerLink="form" routerLinkActive="active">Form </a>
-        <a class="nav-link" routerLink="preparation" routerLinkActive="active">Preparation </a>
-        <a class="nav-link" routerLink="application" routerLinkActive="active">Application </a>
-        <a class="nav-link" routerLink="user" routerLinkActive="active">User </a>
+        <a class="nav-link" routerLink="preparation" routerLinkActive="active">Hazirlik </a>
+        <a class="nav-link" routerLink="application" routerLinkActive="active">Basvuru </a>
+        <a class="nav-link" routerLink="user" routerLinkActive="active">Kullanici </a>
       </div>
 
     </div>
     <div class="navbar-text me-auto">
       <img src="assets/images/logo.gif" alt="Logo" style="max-width: 50px; height: auto;" class="rounded-circle me-2">
       <a class="fw-bold text-light ps-2 pe-3 text-decoration-none"
-         style="font-size: 1.2rem;">{{ student.name }} {{ student.lastName }}</a>
+         style="font-size: 1.2rem;">{{ student.firstName }} {{ student.lastName }}</a>
     </div>
     <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
