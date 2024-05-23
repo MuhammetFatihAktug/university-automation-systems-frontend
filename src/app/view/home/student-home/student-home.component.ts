@@ -5,6 +5,7 @@ import {StudentService} from "../../../shared/services/student.service";
 import {Student} from "../../../shared/models/student";
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {StudentCourse} from "../../../shared/models/studentCourse";
+import {CourseAbsence} from "../../../shared/models/courseAbsence";
 
 
 @Component({
@@ -23,6 +24,7 @@ import {StudentCourse} from "../../../shared/models/studentCourse";
 export class StudentHomeComponent {
   student: Student;
   studentCourse: StudentCourse[];
+  courseAbsence: CourseAbsence[];
 
   constructor(private studentService: StudentService) {
 
@@ -45,6 +47,14 @@ export class StudentHomeComponent {
       })
       .catch(error => {
         console.error('Error fetching student course data:', error);
+      });
+    this.studentService.getAllCourseAbsence()
+      .then(courseAbsence => {
+        this.courseAbsence = courseAbsence;
+        console.log('Course absence data:', this.courseAbsence);
+      })
+      .catch(error => {
+        console.error('Error fetching  course absence data:', error);
       });
   }
 }
