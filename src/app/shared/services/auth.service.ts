@@ -1,33 +1,32 @@
 import {Injectable, signal} from '@angular/core';
 import {AxiosService} from './axios.service';
+import {StudentService} from "./student.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  authState: boolean = true;
 
   constructor(private axiosService: AxiosService) {
   }
 
-  login(studentNumber: string, studentPassword: string): Promise<any> {
-    return this.axiosService.request(
-      "POST",
-      "/login",
-      {
-        studentNumber: studentNumber,
-        password: studentPassword
-      }
-    ).then(value => {
-      this.axiosService.setAuthToken(value.data.token);
-      this.authState = true;
-      return value.data;
-    }).catch(error => {
+  async login(email: string, studentPassword: string): Promise<any> {
+    try {
+      const response = await this.axiosService.request(
+        "POST",
+        "/login",
+        {email: email, password: studentPassword},
+        false
+      );
+      this.axiosService.setAuthToken(response.data.access_token);
+      this.axiosService.setRefreshToken(response.data.refresh_token);
+      console.log(response);
+      return response;
+    } catch (error) {
       console.error(error);
-      this.authState = false;
       throw error;
-    });
+    }
   }
 
 }

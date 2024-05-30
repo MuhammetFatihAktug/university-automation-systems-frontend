@@ -1,44 +1,40 @@
-<!-- semester.component.html -->
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Alinan Dersler</h5>
-    <select class="form-select" (change)="selectedSemester($event.target)">
-      @for (date of semesters; track $index) {
-        <option selected [value]="date.semesterDate" >{{ date.semesterDate }} {{date.semesterPeriod}}</option>
-      }
-    </select>
-    <div >
-      @if(selectedSemester !== null){
-        <p>Ders Girisi Yapilmamis</p>
-
-        <table class="table table-bordered">
+    <div *ngIf="studentCourse && studentCourse.length > 0; else noCoursesTemplate">
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover">
           <thead class="table-dark">
           <tr>
             <th scope="col">Ders Adı</th>
-            <th scope="col">Ders Kodu</th>
-            <th scope="col">Akademisyen</th>
+            <th scope="col">Credits</th>
+            <th scope="col">ECTS</th>
+            <th scope="col">Midterm</th>
+            <th scope="col">Final Exam</th>
+            <th scope="col">Makeup</th>
+            <th scope="col">Average</th>
+            <th scope="col">Letter Grade</th>
+            <th scope="col">Status</th>
           </tr>
           </thead>
           <tbody>
-
-            <tr *ngFor="let lesson of lessons">
-              <td>{{ lesson.name }}</td>
-              <td>{{ lesson.code }}</td>
-              <td>{{ lesson.academician }}</td>
-            </tr>
-
-          <ng-template #noLessons>
-            <tr>
-              <td colspan="3">Ders Kaydı Yapılmamış!</td>
-            </tr>
-          </ng-template>
+          <tr *ngFor="let course of studentCourse">
+            <td>{{ course.course.name }}</td>
+            <td>{{ course.course.credits }}</td>
+            <td>{{ course.course.ects }}</td>
+            <td>{{ course.midterm }}</td>
+            <td>{{ course.finalExam }}</td>
+            <td>{{ course.makeup }}</td>
+            <td>{{ course.average }}</td>
+            <td>{{ course.letterGrade }}</td>
+            <td>{{ course.status }}</td>
+          </tr>
           </tbody>
         </table>
-
-
-      } @else {
-        <p>{{selectedSemester}}</p>
-      }
+      </div>
     </div>
+    <ng-template #noCoursesTemplate>
+      <p class="text-center text-muted">Ders Kaydı Yapılmamış!</p>
+    </ng-template>
   </div>
 </div>

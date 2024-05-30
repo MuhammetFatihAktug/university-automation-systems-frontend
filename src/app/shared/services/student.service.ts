@@ -4,28 +4,20 @@ import {AxiosService} from "./axios.service";
 import {StudentCourse} from "../models/studentCourse";
 import {CourseAbsence} from "../models/courseAbsence";
 import * as string_decoder from "string_decoder";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class StudentService {
 
-  student: Student;
-  studentCourse: StudentCourse[];
-  courseAbsence: CourseAbsence[];
-
-  private _studentNumber: number=201913171046;
-
-
-  constructor(private axiosService: AxiosService) {
+  constructor(private axiosService: AxiosService, private authService: AuthService) {
   }
 
   async getStudent(): Promise<any> {
-    const params = {studentNumber: 201913171046};
     try {
-      let response = await this.axiosService.request("GET", "user/info", params);
-      this.student = response.data;
-      return this.student;
+      const response = await this.axiosService.request("GET", "/user/info", null, true);
+      return response.data;
     } catch (error) {
       console.error("Error fetching student data:", error);
       throw error;
@@ -33,35 +25,22 @@ export class StudentService {
   }
 
   async getStudentCourse(): Promise<any> {
-    const params = {studentNumber: 201913171046};
     try {
-      let response = await this.axiosService.request("GET", "user/courses", params);
-      this.studentCourse = response.data;
-      return this.studentCourse;
+      const response = await this.axiosService.request("GET", `/user/courses`, null, true);
+      return response.data;
     } catch (error) {
-      console.error("Error fetching student data:", error);
+      console.error("Error fetching student course data:", error);
       throw error;
     }
   }
 
   async getAllCourseAbsence(): Promise<any> {
-    const params = {studentNumber: 201913171046};
     try {
-      let response = await this.axiosService.request("GET", "user/absences",params);
-      this.courseAbsence = response.data;
-      return this.courseAbsence;
+      const response = await this.axiosService.request("GET", `/user/absences`, null, true);
+      return response.data;
     } catch (error) {
-      console.error("Error fetching course absence: ", error);
+      console.error("Error fetching course absence:", error);
       throw error;
     }
   }
-
-  get studentNumber(): number {
-    return this._studentNumber;
-  }
-
-  set studentNumber(value: number) {
-    this._studentNumber = value;
-  }
-
 }

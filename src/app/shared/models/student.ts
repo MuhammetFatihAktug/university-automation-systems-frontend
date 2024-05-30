@@ -3,6 +3,7 @@ export interface Student {
   tc: number,
   firstName: string,
   lastName: string,
+  email: string,
   phoneNumber: string,
   birthDate: Date,
   gender: string,
@@ -12,5 +13,6 @@ export interface Student {
   curriculum: string,
   studyDurationStatus: string,
   tuitionStatus: string,
-  password: string
+  password: string,
+  role: String
 }

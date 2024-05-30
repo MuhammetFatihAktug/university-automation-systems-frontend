@@ -12,7 +12,6 @@ import {AuthService} from "../../shared/services/auth.service";
   imports: [
     LoginFormComponent,
     NgIf,
-
     HeaderComponent,
     FooterComponent
   ],
@@ -29,11 +28,11 @@ export class LoginComponent {
 
   onLogin(input: any) {
     this.componentToShow = "spin";
-    this.authService.login(input.studentNumber, input.studentPassword).then(value => {
+    this.authService.login(input.email, input.studentPassword).then(value => {
       if (value) {
         this.route.navigate(["/home"]);
       } else {
-        console.error("password and number does not exist")
+        console.error("password and email does not exist")
       }
       this.componentToShow = "loginForm";
     })

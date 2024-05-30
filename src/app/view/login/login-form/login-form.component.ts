@@ -18,7 +18,7 @@ export class LoginFormComponent {
 
   loginForm: FormGroup;
 
-  studentNumber: string = "";
+  email: string = "";
   studentPassword: string = "";
 
   @Output() onSubmitLoginEvent = new EventEmitter;
@@ -33,16 +33,16 @@ export class LoginFormComponent {
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      studentNumber: ['', [Validators.required]],
+      email: ['', [Validators.required]],
       studentPassword: ['', Validators.required]
     });
   }
 
   onSubmit() {
     if (this.loginForm.valid) {
-      const studentNumber = this.loginForm.get('studentNumber').value;
+      const email = this.loginForm.get('email').value;
       const studentPassword = this.loginForm.get('studentPassword').value;
-      this.onSubmitLoginEvent.emit({ studentNumber, studentPassword });
+      this.onSubmitLoginEvent.emit({ email, studentPassword });
     } else {
       console.log('Form is invalid');
     }

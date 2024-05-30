@@ -18,10 +18,9 @@ import {AuthService} from "../shared/services/auth.service";
 })
 export class ContentComponent {
 
-  state: boolean;
 
   constructor(private authService: AuthService) {
-    this.state = this.authService.authState;
+
   }
 
 

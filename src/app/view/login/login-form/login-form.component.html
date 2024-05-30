@@ -2,14 +2,14 @@
   <div class="card-body">
     <div class="card-title mb-3 fw-bolder fs-4">Sign in</div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <!-- Student Number input -->
+      <!-- Student email input -->
       <div class="form-floating mb-3">
-        <input type="text" class="form-control input-text" id="floatingInput" placeholder="****13171074"
-               formControlName="studentNumber" required>
-        <div *ngIf="loginForm.get('studentNumber').invalid && (loginForm.get('studentNumber').dirty || loginForm.get('studentNumber').touched)" class="invalid-feedback">
-          Student Number is required
+        <input type="email" class="form-control input-text" id="floatingInput" placeholder="****@gmail.com"
+               formControlName="email" required>
+        <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="invalid-feedback">
+          Email is required
         </div>
-        <label for="floatingInput">Student Number</label>
+        <label for="floatingInput">Student Email</label>
       </div>
       <!-- Password input -->
       <div class="input-group mb-3">

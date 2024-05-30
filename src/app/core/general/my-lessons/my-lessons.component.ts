@@ -1,8 +1,12 @@
-import {Component} from '@angular/core';
+import {Component, Input, SimpleChanges} from '@angular/core';
 import {Semester} from "../../../shared/models/semester";
 import {NgForOf, NgIf} from "@angular/common";
 import {Lesson} from "../../../shared/models/lesson";
 import {ReactiveFormsModule} from "@angular/forms";
+import {StudentCourse} from "../../../shared/models/studentCourse";
+import {CourseAbsence} from "../../../shared/models/courseAbsence";
+import {StudentService} from "../../../shared/services/student.service";
+import {Course} from "../../../shared/models/course";
 
 @Component({
   selector: 'app-my-lessons',
@@ -17,55 +21,17 @@ import {ReactiveFormsModule} from "@angular/forms";
 })
 export class MyLessonsComponent {
 
-  semesters: Semester[];
-  selectedSemester: any = {};
-  lessons: Lesson[];
+   studentCourse: StudentCourse[] | null = null;
 
-  selectSemester(semester: any) {
-    this.selectedSemester = semester;
+  constructor(private studentService: StudentService) {
   }
 
-  ngOnInit() {
-    this.semesters = [
-      {semesterDate: "2023-2024", semesterPeriod: "Bahar"},
-      {semesterDate: "2023-2024", semesterPeriod: "Guz"},
-      {semesterDate: "2022-2023", semesterPeriod: "Bahar"},
-      {semesterDate: "2022-2023", semesterPeriod: "Guz"},
-      {semesterDate: "2021-2022", semesterPeriod: "Bahar"},
-      {semesterDate: "2021-2022", semesterPeriod: "Guz"},
-      {semesterDate: "2020-2021", semesterPeriod: "Bahar"}
-
-    ];
-
-    this.lessons = [{
-      name: "Veri analizi",
-      code: "vr-23",
-      day: null,
-      time: null,
-      academician: "Gurcan Yavuz",
-      location: null},
-      {
-      name: "Makine Ogrenmesi",
-      code: "vr-23",
-      day: null,
-      time: null,
-      academician: "Hasan Temurtas",
-      location: null
-    }, {
-      name: "Oyun Teorisi",
-      code: "vr-23",
-      day: null,
-      time: null,
-      academician: "Gurcan Yavuz",
-      location: null
-    }, {
-      name: "Matematik 3",
-      code: "vr-23",
-      day: null,
-      time: null,
-      academician: "Gurcan Yavuz",
-      location: null
-    }];
+  async ngOnInit(): Promise<void> {
+    try {
+      this.studentCourse = await this.studentService.getStudentCourse();
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
 
 }

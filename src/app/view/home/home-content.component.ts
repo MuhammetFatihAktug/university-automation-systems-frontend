@@ -16,5 +16,4 @@ import {StudentService} from "../../shared/services/student.service";
 export class HomeContentComponent {
     currentUserType:string = "student"  ;
 
-
 }

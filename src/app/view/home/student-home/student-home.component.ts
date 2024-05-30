@@ -6,6 +6,7 @@ import {Student} from "../../../shared/models/student";
 import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/router";
 import {StudentCourse} from "../../../shared/models/studentCourse";
 import {CourseAbsence} from "../../../shared/models/courseAbsence";
+import {NgIf} from "@angular/common";
 
 
 @Component({
@@ -17,44 +18,25 @@ import {CourseAbsence} from "../../../shared/models/courseAbsence";
     RouterLink,
     RouterOutlet,
     RouterLinkActive,
+    NgIf,
   ],
   templateUrl: './student-home.component.html',
   styleUrl: './student-home.component.css'
 })
 export class StudentHomeComponent {
-  student: Student;
-  studentCourse: StudentCourse[];
-  courseAbsence: CourseAbsence[];
+  student: Student | null = null;
+
 
   constructor(private studentService: StudentService) {
-
   }
 
-  ngOnInit(): void {
-    this.studentService.getStudent()
-      .then(student => {
-        this.student = student;
-        console.log('Student data:', this.student);
-      })
-      .catch(error => {
-        console.error('Error fetching student data:', error);
-      });
+  async ngOnInit(): Promise<void> {
+    try {
+      this.student = await this.studentService.getStudent();
 
-    this.studentService.getStudentCourse()
-      .then(studentCourse => {
-        this.studentCourse = studentCourse;
-        console.log('Student Course data:', this.studentCourse);
-      })
-      .catch(error => {
-        console.error('Error fetching student course data:', error);
-      });
-    this.studentService.getAllCourseAbsence()
-      .then(courseAbsence => {
-        this.courseAbsence = courseAbsence;
-        console.log('Course absence data:', this.courseAbsence);
-      })
-      .catch(error => {
-        console.error('Error fetching  course absence data:', error);
-      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
   }
 }
+
