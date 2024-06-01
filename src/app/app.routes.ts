@@ -6,9 +6,7 @@ import {TestComponent} from "./shared/components/test/test.component";
 import {CourseSemesterComponent} from "./core/course-semester/course-semester.component";
 import {GeneralComponent} from "./core/general/general.component";
 import {UserComponent} from "./core/user/user.component";
-import {ApplicationComponent} from "./core/application/application.component";
-import {PreparationComponent} from "./core/preparation/preparation.component";
-import {FormComponent} from "./core/form/form.component";
+
 
 
 export const routes: Routes = [

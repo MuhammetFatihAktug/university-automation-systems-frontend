@@ -17,8 +17,8 @@
                 <td>
                   @for (item of courseAbsence; track $index) {
                     @if (item.studentCourse.course.name == course.course.name) {
-                      <span class="badge me-2" [ngClass]="item.absenceStatus ? 'bg-danger' : 'bg-success'">
-                    <i [ngClass]="item.absenceStatus ? 'bi bi-x-circle' : 'bi bi-check-circle'"></i>
+                      <span class="badge me-2" [ngClass]="item.absenceStatus ? 'bg-success' : 'bg-danger'">
+                    <i [ngClass]="item.absenceStatus ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
                         {{ item.date | date: 'shortDate' }}
                   </span>
                     }

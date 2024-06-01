@@ -1,6 +1,34 @@
+<!-- score.component.html -->
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Not Listesi</h5>
-
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Ders Adı</th>
+          <th>Vize</th>
+          <th>Final</th>
+          <th>Bütünleme</th>
+          <th>Ortalama</th>
+          <th>Harf Notu</th>
+          <th>Durum</th>
+        </tr>
+        </thead>
+        <tbody>
+          @for (sc of studentCourse; track $index) {
+            <tr>
+              <td>{{ sc.course.name }}</td>
+              <td>{{ sc.midterm }}</td>
+              <td>{{ sc.finalExam }}</td>
+              <td>{{ sc.makeup }}</td>
+              <td>{{ sc.average }}</td>
+              <td>{{ sc.letterGrade }}</td>
+              <td>{{ sc.status }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>

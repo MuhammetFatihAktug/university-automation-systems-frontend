@@ -27,12 +27,10 @@ export class AbsenteeismComponent {
   }
 
   async ngOnInit(): Promise<void> {
-    try {
-      this.courseAbsence = await this.studentService.getAllCourseAbsence();
-      this.studentCourse = await this.studentService.getStudentCourse();
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
+
+    this.courseAbsence = await this.studentService.getAllCourseAbsence();
+    this.studentCourse = await this.studentService.getStudentCourse();
+
   }
 
 
