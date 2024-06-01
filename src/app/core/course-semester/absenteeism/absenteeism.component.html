@@ -1,1 +1,36 @@
-<p>absenteeism works!</p>
+<div class="card mt-4">
+  <div class="card-body">
+    <h5 class="card-title">Devamsızlık Durumu</h5>
+    @if (courseAbsence && courseAbsence.length > 0) {
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>Öğrenci Kursu</th>
+            <th>Devamsızlık Günleri</th>
+          </tr>
+          </thead>
+          <tbody>
+            @for (course of studentCourse; track $index) {
+              <tr>
+                <td>{{ course.course.name }}</td>
+                <td>
+                  @for (item of courseAbsence; track $index) {
+                    @if (item.studentCourse.course.name == course.course.name) {
+                      <span class="badge me-2" [ngClass]="item.absenceStatus ? 'bg-danger' : 'bg-success'">
+                    <i [ngClass]="item.absenceStatus ? 'bi bi-x-circle' : 'bi bi-check-circle'"></i>
+                        {{ item.date | date: 'shortDate' }}
+                  </span>
+                    }
+                  }
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    } @else {
+      <p>Devamsızlık kaydı bulunmuyor!</p>
+    }
+  </div>
+</div>

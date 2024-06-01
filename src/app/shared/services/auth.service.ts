@@ -21,7 +21,6 @@ export class AuthService {
       );
       this.axiosService.setAuthToken(response.data.access_token);
       this.axiosService.setRefreshToken(response.data.refresh_token);
-      console.log(response);
       return response;
     } catch (error) {
       console.error(error);

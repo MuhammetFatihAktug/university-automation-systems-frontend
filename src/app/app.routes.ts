@@ -19,9 +19,6 @@ export const routes: Routes = [
     path: 'home', component: HomeContentComponent, children: [
       {path: 'course', component: CourseSemesterComponent},
       {path: 'general', component: GeneralComponent},
-      {path: 'form', component: FormComponent},
-      {path: 'preparation', component: PreparationComponent},
-      {path: 'application', component: ApplicationComponent},
       {path: 'user', component: UserComponent}
     ]
   },
