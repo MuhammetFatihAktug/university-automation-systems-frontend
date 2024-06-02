@@ -9,4 +9,5 @@ export interface StudentCourse {
   average: number;
   letterGrade: string;
   status: string;
+  createdDate: string;
 }

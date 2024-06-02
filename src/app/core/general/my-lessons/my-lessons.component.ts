@@ -1,12 +1,8 @@
-import {Component, Input, SimpleChanges} from '@angular/core';
-import {Semester} from "../../../shared/models/semester";
-import {NgForOf, NgIf} from "@angular/common";
-import {Lesson} from "../../../shared/models/lesson";
+import {Component} from '@angular/core';
+import {KeyValuePipe, NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule} from "@angular/forms";
 import {StudentCourse} from "../../../shared/models/studentCourse";
-import {CourseAbsence} from "../../../shared/models/courseAbsence";
 import {StudentService} from "../../../shared/services/student.service";
-import {Course} from "../../../shared/models/course";
 
 @Component({
   selector: 'app-my-lessons',
@@ -14,14 +10,16 @@ import {Course} from "../../../shared/models/course";
   imports: [
     NgForOf,
     NgIf,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    KeyValuePipe
   ],
   templateUrl: './my-lessons.component.html',
   styleUrl: './my-lessons.component.css'
 })
 export class MyLessonsComponent {
 
-   studentCourse: StudentCourse[] | null = null;
+  studentCourse: StudentCourse[] | null = null;
+  groupedCourses: { [key: string]: StudentCourse[] } = {};
 
   constructor(private studentService: StudentService) {
   }
@@ -29,9 +27,24 @@ export class MyLessonsComponent {
   async ngOnInit(): Promise<void> {
     try {
       this.studentCourse = await this.studentService.getStudentCourse();
+      this.groupCoursesByDate();
+      console.log(this.groupedCourses)
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
 
+  groupCoursesByDate() {
+    if (this.studentCourse) {
+      this.studentCourse.forEach(value => {
+        const date: string = value.createdDate;
+        if (!this.groupedCourses[date]) {
+          this.groupedCourses[date] = [];
+        }
+        this.groupedCourses[date].push(value);
+      });
+    } else {
+      console.error('studentCourse is null or undefined');
+    }
+  }
 }

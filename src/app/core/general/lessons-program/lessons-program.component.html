@@ -1,12 +1,12 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title mb-4" style="font-size: 24px;">Ders Programi</h5>
-    @if(lessons != null){
+    @if (lessons != null) {
       <div class="row">
         @for (day of days; track $index) {
           <div class="col-md-4 mb-3">
             <div class="card">
-              <div class="card-header bg-primary text-white">
+              <div class="card-header bg-success text-white">
                 <strong>{{ day }}</strong>
               </div>
               <ul class="list-group list-group-flush">
@@ -25,7 +25,6 @@
         }</div>
     } @else {
       <p class="text-muted">Henüz program bilgisi bulunmamaktadır.</p>
-
     }
   </div>
 </div>
