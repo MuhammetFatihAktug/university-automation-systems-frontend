@@ -34,6 +34,16 @@ export class StudentService {
     }
   }
 
+  async getStudentGpa(): Promise<any> {
+    try {
+      const response = await this.axiosService.request("GET", `/user/gpa`, null, true);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching student gpa data:", error);
+      throw error;
+    }
+  }
+
   async getAllCourseAbsence(): Promise<any> {
     try {
       const response = await this.axiosService.request("GET", `/user/absences`, null, true);
@@ -43,4 +53,27 @@ export class StudentService {
       throw error;
     }
   }
+
+  async getGroupedStudentCourses(): Promise<{ [key: string]: StudentCourse[] }> {
+    try {
+      const studentCourses = await this.getStudentCourse();
+      return this.groupCoursesByDate(studentCourses);
+    } catch (error) {
+      console.error("Error fetching grouped student courses:", error);
+      throw error;
+    }
+  }
+
+  private groupCoursesByDate(studentCourses: StudentCourse[]): { [key: string]: StudentCourse[] } {
+    const groupedCourses: { [key: string]: StudentCourse[] } = {};
+    studentCourses.forEach(course => {
+      const date: string = course.createdDate;
+      if (!groupedCourses[date]) {
+        groupedCourses[date] = [];
+      }
+      groupedCourses[date].push(course);
+    });
+    return groupedCourses;
+  }
+
 }

@@ -1,34 +1,57 @@
-<!-- score.component.html -->
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Not Listesi</h5>
-    <div class="table-responsive">
-      <table class="table table-striped">
-        <thead>
-        <tr>
-          <th>Ders Adı</th>
-          <th>Vize</th>
-          <th>Final</th>
-          <th>Bütünleme</th>
-          <th>Ortalama</th>
-          <th>Harf Notu</th>
-          <th>Durum</th>
-        </tr>
-        </thead>
-        <tbody>
-          @for (sc of studentCourse; track $index) {
-            <tr>
-              <td>{{ sc.course.name }}</td>
-              <td>{{ sc.midterm }}</td>
-              <td>{{ sc.finalExam }}</td>
-              <td>{{ sc.makeup }}</td>
-              <td>{{ sc.average }}</td>
-              <td>{{ sc.letterGrade }}</td>
-              <td>{{ sc.status }}</td>
-            </tr>
-          }
-        </tbody>
-      </table>
-    </div>
+    @if (groupedCourses && Object.keys(groupedCourses).length > 0) {
+      <div class="accordion" id="scoreAccordion">
+        @for (group of (groupedCourses | keyvalue); track $index) {
+          <div class="card">
+            <div class="card-header" [id]="'heading' + $index">
+              <h2 class="mb-0">
+                <button class="btn btn-link text-decoration-none" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true"
+                        [attr.aria-controls]="'collapse' + $index">
+                  {{ group.key }}
+                </button>
+              </h2>
+            </div>
+            <div id="collapse{{$index}}" class="collapse" [attr.aria-labelledby]="'heading' + $index"
+                 data-bs-parent="#scoreAccordion">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-striped">
+                    <thead>
+                    <tr>
+                      <th>Ders Adı</th>
+                      <th>Vize</th>
+                      <th>Final</th>
+                      <th>Bütünleme</th>
+                      <th>Ortalama</th>
+                      <th>Harf Notu</th>
+                      <th>Durum</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                      @for (course of group.value; track $index) {
+                        <tr>
+                          <td>{{ course.course.name }}</td>
+                          <td>{{ course.midterm }}</td>
+                          <td>{{ course.finalExam }}</td>
+                          <td>{{ course.makeup }}</td>
+                          <td>{{ course.average }}</td>
+                          <td>{{ course.letterGrade }}</td>
+                          <td>{{ course.status }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    } @else {
+      <p class="text-center text-muted">Not Kaydı Yapılmamış!</p>
+    }
   </div>
 </div>

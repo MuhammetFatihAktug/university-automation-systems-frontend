@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ExamCalendarComponent} from "../general/exam-calendar/exam-calendar.component";
 import {LessonsProgramComponent} from "../general/lessons-program/lessons-program.component";
 import {MyLessonsComponent} from "../general/my-lessons/my-lessons.component";
 import {TuitionInfoComponent} from "../general/tuition-info/tuition-info.component";
 import {ScoreComponent} from "./score/score.component";
-import {PeriodAverageComponent} from "./period-average/period-average.component";
+
 import {AbsenteeismComponent} from "./absenteeism/absenteeism.component";
 
 @Component({
@@ -16,7 +16,7 @@ import {AbsenteeismComponent} from "./absenteeism/absenteeism.component";
     MyLessonsComponent,
     TuitionInfoComponent,
     ScoreComponent,
-    PeriodAverageComponent,
+
     AbsenteeismComponent
   ],
   templateUrl: './course-semester.component.html',

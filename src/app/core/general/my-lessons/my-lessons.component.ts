@@ -17,8 +17,6 @@ import {StudentService} from "../../../shared/services/student.service";
   styleUrl: './my-lessons.component.css'
 })
 export class MyLessonsComponent {
-
-  studentCourse: StudentCourse[] | null = null;
   groupedCourses: { [key: string]: StudentCourse[] } = {};
 
   constructor(private studentService: StudentService) {
@@ -26,25 +24,12 @@ export class MyLessonsComponent {
 
   async ngOnInit(): Promise<void> {
     try {
-      this.studentCourse = await this.studentService.getStudentCourse();
-      this.groupCoursesByDate();
-      console.log(this.groupedCourses)
+      this.groupedCourses = await this.studentService.getGroupedStudentCourses();
+      console.log(this.groupedCourses);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   }
 
-  groupCoursesByDate() {
-    if (this.studentCourse) {
-      this.studentCourse.forEach(value => {
-        const date: string = value.createdDate;
-        if (!this.groupedCourses[date]) {
-          this.groupedCourses[date] = [];
-        }
-        this.groupedCourses[date].push(value);
-      });
-    } else {
-      console.error('studentCourse is null or undefined');
-    }
-  }
+  protected readonly Object = Object;
 }

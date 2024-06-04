@@ -1,18 +1,21 @@
 <div class="card">
   <div class="card-body">
     <h5 class="card-title">Alınan Dersler</h5>
-    <div *ngIf="studentCourse && studentCourse.length > 0; else noCourses">
+    @if (groupedCourses && Object.keys(groupedCourses).length; ) {
       <div class="accordion" id="courseAccordion">
-        <div *ngFor="let group of (groupedCourses | keyvalue); let i = index">
+        @for (group of (groupedCourses | keyvalue); track $index) {
           <div class="card">
-            <div class="card-header" [id]="'heading' + i">
+            <div class="card-header" [id]="'heading' + $index">
               <h2 class="mb-0">
-                <button class="btn btn-link" type="button" data-bs-toggle="collapse" [attr.data-bs-target]="'#collapse' + i" aria-expanded="true" [attr.aria-controls]="'collapse' + i">
-                  {{group.key}}
+                <button class="btn btn-link text-decoration-none " type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapse' + $index" aria-expanded="true"
+                        [attr.aria-controls]="'collapse' + $index">
+                  {{ group.key }}
                 </button>
               </h2>
             </div>
-            <div id="collapse{{i}}" class="collapse" [attr.aria-labelledby]="'heading' + i" data-bs-parent="#courseAccordion">
+            <div id="collapse{{$index}}" class="collapse" [attr.aria-labelledby]="'heading' + $index"
+                 data-bs-parent="#courseAccordion">
               <div class="card-body">
                 <div class="table-responsive">
                   <table class="table table-bordered table-hover">
@@ -24,22 +27,23 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let course of group.value">
-                      <td>{{course.course.name}}</td>
-                      <td>{{course.course.credits}}</td>
-                      <td>{{course.course.ects}}</td>
-                    </tr>
+                      @for (course of group.value; track $index) {
+                        <tr>
+                          <td>{{ course.course.name }}</td>
+                          <td>{{ course.course.credits }}</td>
+                          <td>{{ course.course.ects }}</td>
+                        </tr>
+                      }
                     </tbody>
                   </table>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        }
       </div>
-    </div>
-    <ng-template #noCourses>
+    } @else {
       <p class="text-center text-muted">Ders Kaydı Yapılmamış!</p>
-    </ng-template>
+    }
   </div>
 </div>
