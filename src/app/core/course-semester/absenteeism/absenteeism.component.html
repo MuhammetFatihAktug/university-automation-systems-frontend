@@ -1,33 +1,55 @@
 <div class="card mt-4">
   <div class="card-body">
     <h5 class="card-title">Devamsızlık Durumu</h5>
-    @if (courseAbsence && courseAbsence.length > 0) {
-      <div class="table-responsive">
-        <table class="table table-bordered">
-          <thead>
-          <tr>
-            <th>Öğrenci Kursu</th>
-            <th>Devamsızlık Günleri</th>
-          </tr>
-          </thead>
-          <tbody>
-            @for (course of studentCourse; track $index) {
-              <tr>
-                <td>{{ course.course.name }}</td>
-                <td>
-                  @for (item of courseAbsence; track $index) {
-                    @if (item.studentCourse.course.name == course.course.name) {
-                      <span class="badge me-2" [ngClass]="item.absenceStatus ? 'bg-success' : 'bg-danger'">
-                    <i [ngClass]="item.absenceStatus ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
-                        {{ item.date | date: 'shortDate' }}
-                  </span>
+    @if (courseAbsence && Object.keys(courseAbsence).length > 0) {
+      <div class="accordion" id="absenceAccordion">
+        @for (group of (courseAbsence | keyvalue); track $index) {
+          <div class="card">
+            <div class="card-header" [id]="'headingAbsence' + $index">
+              <h2 class="mb-0">
+                <button class="btn btn-link text-decoration-none" type="button" data-bs-toggle="collapse"
+                        [attr.data-bs-target]="'#collapseAbsence' + $index" aria-expanded="true"
+                        [attr.aria-controls]="'collapseAbsence' + $index">
+                  {{ group.key }}
+                </button>
+              </h2>
+            </div>
+            <div id="collapseAbsence{{$index}}" class="collapse" [attr.aria-labelledby]="'headingAbsence' + $index"
+                 data-bs-parent="#absenceAccordion">
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                      <th>Öğrenci Kursu</th>
+                      <th>Devamsızlık Günleri</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @for(course of (group.value | keyvalue); track $index){
+                        <tr>
+                          <td>{{ course.key }}</td>
+                          <td>
+                            @for(date of course.value.dates; track $index){
+
+                              <span class="badge me-2"
+                                    [ngClass]="course.value.absenceStatus[$index] ? 'bg-success' : 'bg-danger'">
+                                <i
+                                  [ngClass]="course.value.absenceStatus[$index] ? 'bi bi-check-circle' : 'bi bi-x-circle'"></i>
+                                {{ date | date: 'shortDate' }}
+                              </span>
+
+                            }
+                          </td>
+                        </tr>
                     }
-                  }
-                </td>
-              </tr>
-            }
-          </tbody>
-        </table>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
       </div>
     } @else {
       <p>Devamsızlık kaydı bulunmuyor!</p>

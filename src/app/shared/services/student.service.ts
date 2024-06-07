@@ -76,4 +76,52 @@ export class StudentService {
     return groupedCourses;
   }
 
+  public groupCoursesByDateAndSemester(studentCourses: StudentCourse[]): { [key: string]: StudentCourse[] } {
+    const groupedCourses: { [key: string]: StudentCourse[] } = {};
+    studentCourses.forEach(course => {
+      const year = course.createdDate.split('-')[0];
+      const semester = course.course.semester === 1 ? 'Güz' : 'Bahar';
+      const key = `${year}-${parseInt(year) + 1} ${semester}`;
+
+      if (!groupedCourses[key]) {
+        groupedCourses[key] = [];
+      }
+      groupedCourses[key].push(course);
+    });
+    return groupedCourses;
+  }
+  async getGroupedCourseAbsence(): Promise<{ [key: string]: { [courseName: string]: { dates: string[], absenceStatus: boolean[] } } }> {
+    try {
+      const absences = await this.getAllCourseAbsence();
+      return this.groupAbsencesByDateAndSemester(absences);
+    } catch (error) {
+      console.error("Error fetching grouped course absence:", error);
+      throw error;
+    }
+  }
+
+  private groupAbsencesByDateAndSemester(absences: CourseAbsence[]): { [key: string]: { [courseName: string]: { dates: string[], absenceStatus: boolean[] } } } {
+    const groupedAbsences: { [key: string]: { [courseName: string]: { dates: string[], absenceStatus: boolean[] } } } = {};
+
+    absences.forEach(absence => {
+      const year = absence.studentCourse.createdDate.split('-')[0];
+      const semester = absence.studentCourse.course.semester === 1 ? 'Güz' : 'Bahar';
+      const key = `${year}-${parseInt(year) + 1} ${semester}`;
+      const courseName = absence.studentCourse.course.name;
+
+      if (!groupedAbsences[key]) {
+        groupedAbsences[key] = {};
+      }
+      if (!groupedAbsences[key][courseName]) {
+        groupedAbsences[key][courseName] = { dates: [], absenceStatus: [] };
+      }
+
+      groupedAbsences[key][courseName].dates.push(absence.date.toString());
+      groupedAbsences[key][courseName].absenceStatus.push(absence.absenceStatus);
+    });
+
+    return groupedAbsences;
+  }
+
+
 }
