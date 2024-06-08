@@ -44,6 +44,15 @@ export class StudentService {
     }
   }
 
+  async getStudentGpaWithSemester(): Promise<any> {
+    try {
+      const response = await this.axiosService.request("GET", `/user/gpa/semester`, null, true);
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching student gpa data:", error);
+      throw error;
+    }
+  }
   async getAllCourseAbsence(): Promise<any> {
     try {
       const response = await this.axiosService.request("GET", `/user/absences`, null, true);

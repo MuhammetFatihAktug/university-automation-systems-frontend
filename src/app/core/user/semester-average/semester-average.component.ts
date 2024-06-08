@@ -1,16 +1,15 @@
 import {Component} from '@angular/core';
 import {StudentService} from "../../../shared/services/student.service";
-import {Chart, registerables} from 'chart.js';
-import {StudentCourse} from "../../../shared/models/studentCourse";
+import {Chart, registerables} from "chart.js";
 
 @Component({
-  selector: 'app-period-average',
+  selector: 'app-semester-average',
   standalone: true,
   imports: [],
-  templateUrl: './period-average.component.html',
-  styleUrl: './period-average.component.css'
+  templateUrl: './semester-average.component.html',
+  styleUrl: './semester-average.component.css'
 })
-export class PeriodAverageComponent {
+export class SemesterAverageComponent {
   public chart: any;
   studentGPA: { [key: string]: number } = {};
 
@@ -22,13 +21,13 @@ export class PeriodAverageComponent {
     const labels = Object.keys(this.studentGPA);
     const data = Object.values(this.studentGPA);
 
-    this.chart = new Chart("periodChart", {
-      type: 'bar',
+    this.chart = new Chart("semesterChart", {
+      type: 'line',
       data: {
         labels: labels,
         datasets: [
           {
-            label: 'GPA per Period ',
+            label: 'GPA per Every Semester',
             data: data,
             backgroundColor: 'rgba(75, 192, 192, 0.2)',
             borderColor: 'rgba(75, 192, 192, 1)',
@@ -58,9 +57,8 @@ export class PeriodAverageComponent {
 
   async ngOnInit() {
     try {
-      this.studentGPA = await this.studentService.getStudentGpa();
+      this.studentGPA = await this.studentService.getStudentGpaWithSemester();
 
-      // Verileri sırala
       const sortedKeys = Object.keys(this.studentGPA).sort();
       const sortedData = {};
       sortedKeys.forEach(key => {
