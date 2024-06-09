@@ -4,6 +4,5 @@ export interface Exam {
   date: string;
   location: string;
   code: string;
-  rate: string;
   including: boolean;
 }

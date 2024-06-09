@@ -37,8 +37,10 @@ export class SemesterAverageComponent {
       },
       options: {
         aspectRatio: 2.5,
+
         scales: {
           y: {
+            max: 4,
             beginAtZero: true
           }
         }

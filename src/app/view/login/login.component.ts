@@ -20,23 +20,20 @@ import {AuthService} from "../../shared/services/auth.service";
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-
   componentToShow: string = "loginForm";
+  errorMessage: string = "";
 
-  constructor(private authService: AuthService, private route: Router) {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
-  onLogin(input: any) {
+  async onSubmitLoginEvent(data: { email: string, studentPassword: string }) {
     this.componentToShow = "spin";
-    this.authService.login(input.email, input.studentPassword).then(value => {
-      if (value) {
-        this.route.navigate(["/home"]);
-      } else {
-        console.error("password and email does not exist")
-      }
+    const success = await this.authService.login(data.email, data.studentPassword);
+    if (success) {
+      this.router.navigate(["/home"]);
+    } else {
+      this.errorMessage = "E-posta veya şifrenizi hatalı girdiniz!";
       this.componentToShow = "loginForm";
-    })
+    }
   }
-
 }
-

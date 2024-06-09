@@ -1,46 +1,42 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title">Not Listesi</h5>
-    <ng-container *ngIf="periods.length > 0; else noRecords">
-      <div class="mb-3">
-        <label for="periodSelect" class="form-label">Dönem Seçin</label>
-        <select id="periodSelect" class="form-select" (change)="onPeriodChange($event)">
-          <option *ngFor="let period of periods" [value]="period">{{ period }}</option>
-        </select>
-      </div>
-      <ng-container *ngIf="selectedPeriod">
-        <div class="table-responsive">
-          <table class="table table-striped">
-            <thead>
-            <tr>
-              <th>Ders Adı</th>
-              <th>Vize</th>
-              <th>Final</th>
-              <th>Bütünleme</th>
-              <th>Ortalama</th>
-              <th>Harf Notu</th>
-              <th>Durum</th>
-            </tr>
-            </thead>
-            <tbody>
-            <ng-container *ngFor="let course of groupCoursesByDateAndSemester[selectedPeriod]">
-              <tr>
-                <td>{{ course.course.name }}</td>
-                <td>{{ course.midterm }}</td>
-                <td>{{ course.finalExam }}</td>
-                <td>{{ course.makeup }}</td>
-                <td>{{ course.average }}</td>
-                <td>{{ course.letterGrade }}</td>
-                <td>{{ course.status }}</td>
-              </tr>
-            </ng-container>
-            </tbody>
-          </table>
-        </div>
-      </ng-container>
-    </ng-container>
-    <ng-template #noRecords>
-      <p class="text-center text-muted">Not Kaydı Yapılmamış!</p>
-    </ng-template>
+<ng-container *ngIf="periods.length > 0; else noRecords">
+  <div class="mb-3">
+    <label for="periodSelect" class="form-label">Dönem Seçin</label>
+    <select id="periodSelect" class="form-select" (change)="onPeriodChange($event)">
+      <option *ngFor="let period of periods" [value]="period">{{ period }}</option>
+    </select>
   </div>
-</div>
+  <ng-container *ngIf="selectedPeriod">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+        <tr>
+          <th>Ders Adı</th>
+          <th>Vize</th>
+          <th>Final</th>
+          <th>Bütünleme</th>
+          <th>Ortalama</th>
+          <th>Harf Notu</th>
+          <th>Durum</th>
+        </tr>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let course of groupCoursesByDateAndSemester[selectedPeriod]">
+          <tr>
+            <td>{{ course.course.name }}</td>
+            <td>{{ course.midterm }}</td>
+            <td>{{ course.finalExam }}</td>
+            <td>{{ course.makeup }}</td>
+            <td>{{ course.average }}</td>
+            <td>{{ course.letterGrade }}</td>
+            <td>{{ course.status }}</td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </ng-container>
+</ng-container>
+<ng-template #noRecords>
+  <p class="text-center text-muted">Not Kaydı Yapılmamış!</p>
+</ng-template>
+

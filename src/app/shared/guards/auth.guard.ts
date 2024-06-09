@@ -1,12 +1,22 @@
-import {CanActivateFn, Router} from '@angular/router';
+import {Injectable} from '@angular/core';
+import {CanActivate, Router} from '@angular/router';
 import {AuthService} from "../services/auth.service";
-import {inject} from "@angular/core";
 
-export const authGuard: CanActivateFn = (route, state) => {
+@Injectable({
+  providedIn: 'root'
+})
+export class AuthGuard implements CanActivate {
 
-  const router: Router = inject(Router);
-  if (localStorage.getItem("auth_token")) {
-    return true;
+  constructor(private authService: AuthService, private router: Router) {
   }
-  return router.navigate(["login"]);
-};
+
+  canActivate(): boolean {
+    if (this.authService.isAuthenticated()) {
+      return true;
+    } else {
+      this.router.navigate(['/login']);
+      return false;
+    }
+  }
+
+}

@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {Exam} from "../../../shared/models/exam";
-import {NgForOf} from "@angular/common";
+import {formatDate, NgForOf} from "@angular/common";
 
 @Component({
   selector: 'app-exam-calendar',
@@ -20,8 +20,7 @@ export class ExamCalendarComponent {
         name: "Veri Analizine Giriş (Teknik Seçmeli Ders VIII)",
         examType: "odev",
         date: "17.05.2024 11:00",
-        location: "null",
-        rate: "25",
+        location: "Belli Degil",
         including: true,
         code: "131718753"
       },
@@ -29,8 +28,7 @@ export class ExamCalendarComponent {
         name: "İstatistik Okuryazarlık (Sosyal Seçmeli Ders II)",
         examType: "Ara Sınav Mazeret",
         date: "17.05.2024 11:00",
-        location: "null",
-        rate: "40",
+        location: "Belli Degil",
         including: false,
         code: "131714514"
       },
@@ -38,21 +36,21 @@ export class ExamCalendarComponent {
         name: "Mühendislik Ekonomisi",
         examType: "Ara Sınav",
         date: "17.04.2024 09:00",
-        location: "null",
-        rate: "40",
+        location: "Belli Degil",
         including: true,
         code: "131718127"
       },
       {
         name: "Mobil Sistem Programlama Projesi",
         examType: "Ara Sinav",
-        date: "null",
-        location: "null",
-        rate: "40",
+        date: "17.04.2024 09:00",
+        location: "Belli Degil",
         including: true,
         code: "131718958"
       }
 
     ];
   }
+
+  protected readonly formatDate = formatDate;
 }

@@ -1,25 +1,25 @@
-<div class="card  text-black">
-  <div class="card-body">
-    <h5 class="card-title mb-4" style="font-size: 24px;">Exam Schedule</h5>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-      @if(exams != null && exams.length > 0) {
-        @for (exam of exams; track $index) {
-          <div class="col">
-            <div class="card">
-              <div class="card-body">
-                <h6 class="card-title">{{ exam.name }}</h6>
-                <p class="card-text text-muted">Sınav Türü: {{ exam.examType }}</p>
-                <p class="card-text text-muted">Tarih: {{ exam.date || 'Bilinmiyor' }}</p>
-                <p class="card-text text-muted">Yer: {{ exam.location || 'Bilinmiyor' }}</p>
-                <p class="card-text text-muted">Oran: {{ exam.rate }}</p>
-                <p class="card-text text-muted">Sınav Listesine Dahil: {{ exam.including }}</p>
-              </div>
-            </div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+  @if (exams != null && exams.length > 0) {
+    @for (exam of exams; track $index) {
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ exam.name }}</h5>
+            <p class="card-text"><strong>Sınav Türü:</strong> {{ exam.examType }}</p>
+            <p class="card-text"><strong>Tarih:</strong> {{ exam.date|| 'Bilinmiyor' }}</p>
+            <p class="card-text"><strong>Yer:</strong> {{ exam.location || 'Bilinmiyor' }}</p>
+            <p class="card-text"><strong>Sınav Listesine Dahil:</strong> {{ exam.including ? 'Evet' : 'Hayır' }}</p>
           </div>
-        }
-      }@else {
-        <p class="text-muted">Henüz sınav bilgisi bulunmamaktadır.</p>
-      }
+        </div>
+      </div>
+    }
+  } @else {
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <p class="card-text text-muted">Henüz sınav bilgisi bulunmamaktadır.</p>
+        </div>
+      </div>
     </div>
-  </div>
+  }
 </div>

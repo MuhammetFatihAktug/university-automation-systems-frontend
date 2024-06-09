@@ -1,15 +1,16 @@
 <div class="card">
   <div class="card-body">
-    <div class="card-title mb-3 fw-bolder fs-4">Sign in</div>
+    <div class="card-title mb-3 fw-bolder fs-4 text-center">Öğrenci Otomasyonuna Giriş</div>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <!-- Student email input -->
       <div class="form-floating mb-3">
         <input type="email" class="form-control input-text" id="floatingInput" placeholder="****@gmail.com"
                formControlName="email" required>
-        <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="invalid-feedback">
-          Email is required
+        <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)"
+             class="invalid-feedback">
+          E-posta Giriniz!
         </div>
-        <label for="floatingInput">Student Email</label>
+        <label for="floatingInput">Kurumsal E-posta</label>
       </div>
       <!-- Password input -->
       <div class="input-group mb-3">
@@ -22,10 +23,12 @@
                  required
                  [ngClass]="{ 'ng-invalid': loginForm.get('studentPassword').invalid && (loginForm.get('studentPassword').dirty || loginForm.get('studentPassword').touched) }">
 
-          <div *ngIf="loginForm.get('studentPassword').invalid && (loginForm.get('studentPassword').dirty || loginForm.get('studentPassword').touched)" class="invalid-feedback">
-            Password is required
+          <div
+            *ngIf="loginForm.get('studentPassword').invalid && (loginForm.get('studentPassword').dirty || loginForm.get('studentPassword').touched)"
+            class="invalid-feedback">
+            Şifre Giriniz!
           </div>
-          <label for="floatingInputGroup1">Password</label>
+          <label for="floatingInputGroup1">Şifre</label>
         </div>
         <button class="btn btn-outline-secondary" type="button" (mouseenter)="togglePassword()"
                 (mouseleave)="togglePassword()">
@@ -39,11 +42,11 @@
       </div>
       <div class="d-flex flex-wrap">
         <button type="submit" class="btn btn-primary btn-block mt-3 mb-3 me-1 flex-fill">
-          <span style="color: white; font-weight: bold;">Sign in <i class="bi bi-box-arrow-in-right"></i></span>
+          <span style="color: white; font-weight: bold;">Giriş <i class="bi bi-box-arrow-in-right ms-2"></i></span>
         </button>
         <button type="button" class="btn btn-danger btn-block mt-3 mb-3 flex-fill">
-          <span style="color: white; font-weight: bold; text-decoration: none;">Sign in with E-Devlet <i
-            class="bi bi-box-arrow-up-right"></i></span>
+          <span style="color: white; font-weight: bold; text-decoration: none;">E-Devlet ile Giriş <i
+            class="bi bi-box-arrow-up-right ms-2"></i></span>
         </button>
       </div>
     </form>

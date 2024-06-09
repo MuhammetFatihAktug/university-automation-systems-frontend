@@ -7,6 +7,8 @@ import {Router, RouterLink, RouterLinkActive, RouterOutlet} from "@angular/route
 import {StudentCourse} from "../../../shared/models/studentCourse";
 import {CourseAbsence} from "../../../shared/models/courseAbsence";
 import {NgIf} from "@angular/common";
+import {AuthService} from "../../../shared/services/auth.service";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 
 @Component({
@@ -27,7 +29,8 @@ export class StudentHomeComponent {
   student: Student | null = null;
 
 
-  constructor(private studentService: StudentService) {
+  constructor(private studentService: StudentService, private authService: AuthService
+  ) {
   }
 
   async ngOnInit(): Promise<void> {
@@ -37,6 +40,10 @@ export class StudentHomeComponent {
     } catch (error) {
       console.error('Error fetching data:', error);
     }
+  }
+
+  logout() {
+    this.authService.logout().then(r => console.log(r));
   }
 }
 

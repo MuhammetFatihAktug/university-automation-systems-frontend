@@ -1,30 +1,42 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary rounded py-2">
   <div class="container-fluid">
-    <div class="collapse navbar-collapse order-1" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link active" aria-current="page" routerLink="general" routerLinkActive="active">Genel</a>
-        <a class="nav-link" routerLink="course" routerLinkActive="active">Ders ve Donem</a>
-
-        <a class="nav-link" routerLink="user" routerLinkActive="active">Kullanici</a>
-      </div>
-    </div>
-    <div class="navbar-text me-auto">
-      <img src="assets/images/logo.gif" alt="Logo" style="max-width: 50px; height: auto;" class="rounded-circle me-2">
+    <!-- Kullanıcı İkonu ve Adı -->
+    <div class="d-flex align-items-center me-auto">
+      <!-- Kullanıcı İkonu -->
+      <i class="bi bi-person-circle text-light" style="font-size: 2rem;"></i>
+      <!-- Kullanıcı Adı -->
       <ng-container *ngIf="student; else loading">
-        <a class="fw-bold text-light ps-2 pe-3 text-decoration-none" style="font-size: 1.2rem;">
+        <span class="fw-bold text-light ps-2 pe-3" style="font-size: 1.2rem;">
           {{ student.firstName }} {{ student.lastName }}
-        </a>
+        </span>
       </ng-container>
       <ng-template #loading>
-        <div class="spinner-border text-light ms-3 " role="status">
+        <div class="spinner-border text-light ms-3" role="status">
           <span class="sr-only"></span>
         </div>
       </ng-template>
     </div>
-    <button class="navbar-toggler order-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+
+    <!-- Navbar Toggle Button for Small Screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+
+    <!-- Navbar Links and Logout Button -->
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link fw-bolder text-light" style="font-size: 1rem;" aria-current="page" routerLink="general" routerLinkActive="active">Genel</a>
+        <a class="nav-link fw-bolder text-light" style="font-size: 1rem;" routerLink="course" routerLinkActive="active">Ders ve Dönem</a>
+        <a class="nav-link fw-bolder text-light" style="font-size: 1rem;" routerLink="user" routerLinkActive="active">Kullanıcı</a>
+        <div class="active-indicator"></div>
+      </div>
+      <!-- Logout Button -->
+      <button class="btn btn-light ms-auto d-flex align-items-center" (click)="logout()" aria-label="Logout">
+        <i class="bi bi-box-arrow-right me-2" style="font-size: 1.3rem;"></i>
+        <span class="fw-bold">Çıkış Yap</span>
+      </button>
+    </div>
   </div>
 </nav>
 

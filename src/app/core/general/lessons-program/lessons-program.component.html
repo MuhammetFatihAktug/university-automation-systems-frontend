@@ -1,30 +1,30 @@
-<div class="card">
-  <div class="card-body">
-    <h5 class="card-title mb-4" style="font-size: 24px;">Ders Programi</h5>
-    @if (lessons != null) {
-      <div class="row">
-        @for (day of days; track $index) {
-          <div class="col-md-4 mb-3">
-            <div class="card">
-              <div class="card-header bg-success text-white">
-                <strong>{{ day }}</strong>
-              </div>
-              <ul class="list-group list-group-flush">
-                @for (lesson of lessons; track $index) {
-                  @if (day == lesson.day) {
-                    <li class="list-group-item">
-                      <strong><i class="fas fa-clock"></i> Zaman:</strong> {{ lesson.time }}<br>
-                      <strong><i class="fas fa-book"></i> Ders:</strong> {{ lesson.name }}<br>
-                      <strong><i class="fas fa-map-marker-alt"></i> Yer:</strong> {{ lesson.location }}
-                    </li>
-                  }
-                }
-              </ul>
-            </div>
+@if (lessons != null) {
+  <div class="row">
+    @for (day of days; track $index) {
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-header bg-success text-white">
+            <strong>{{ day }}</strong>
           </div>
-        }</div>
-    } @else {
-      <p class="text-muted">Henüz program bilgisi bulunmamaktadır.</p>
+          <ul class="list-group list-group-flush">
+            @for (lesson of lessons; track $index) {
+              @if (day == lesson.day) {
+                <li class="list-group-item">
+                  <strong><i class="fas fa-clock"></i> Zaman:</strong> {{ lesson.time }}<br>
+                  <strong><i class="fas fa-book"></i> Ders:</strong> {{ lesson.name }}<br>
+                  <strong><i class="fas fa-map-marker-alt"></i> Yer:</strong> {{ lesson.location }}
+                </li>
+              }
+            }
+          </ul>
+        </div>
+      </div>
     }
   </div>
-</div>
+} @else {
+  <div class="row">
+    <div class="col">
+      <p class="text-muted">Henüz program bilgisi bulunmamaktadır.</p>
+    </div>
+  </div>
+}
