@@ -38,6 +38,7 @@ export class PeriodAverageComponent {
       },
       options: {
         aspectRatio: 2.5,
+        responsive: true,
 
         scales: {
           y: {

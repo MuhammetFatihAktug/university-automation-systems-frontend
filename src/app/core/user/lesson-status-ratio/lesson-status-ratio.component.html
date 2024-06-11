@@ -1,0 +1,32 @@
+<div class="container mt-5 mb-5">
+  <div class="row g-4">
+
+    <!-- Dönem Seçimi -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Dönem Seçimi</h5>
+          <div class="form-group">
+            <select class="form-control" id="periodSelect" (change)="onPeriodChange($event)">
+              <option *ngFor="let period of periods" [value]="period">{{ period }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ders Ortalamaları -->
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title mb-4">Ders Ortalamaları</h5>
+          <div style="overflow-x: auto;">
+            <canvas id="lessonStatusRatio">{{ chart }}</canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

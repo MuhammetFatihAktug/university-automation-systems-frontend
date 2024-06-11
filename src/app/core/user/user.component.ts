@@ -3,6 +3,7 @@ import {AbsenteeismComponent} from "../course-semester/absenteeism/absenteeism.c
 import {ScoreComponent} from "../course-semester/score/score.component";
 import {PeriodAverageComponent} from "./period-average/period-average.component";
 import {SemesterAverageComponent} from "./semester-average/semester-average.component";
+import {LessonStatusRatioComponent} from "./lesson-status-ratio/lesson-status-ratio.component";
 
 @Component({
   selector: 'app-user',
@@ -11,7 +12,8 @@ import {SemesterAverageComponent} from "./semester-average/semester-average.comp
     AbsenteeismComponent,
     ScoreComponent,
     PeriodAverageComponent,
-    SemesterAverageComponent
+    SemesterAverageComponent,
+    LessonStatusRatioComponent
   ],
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
