@@ -6,6 +6,7 @@ import {CourseSemesterComponent} from "./core/course-semester/course-semester.co
 import {GeneralComponent} from "./core/general/general.component";
 import {UserComponent} from "./core/user/user.component";
 import {AuthGuard} from "./shared/guards/auth.guard";
+import {ReportComponent} from "./core/report/report.component";
 
 
 export const routes: Routes = [
@@ -19,7 +20,8 @@ export const routes: Routes = [
     children: [
       {path: 'course', component: CourseSemesterComponent},
       {path: 'general', component: GeneralComponent},
-      {path: 'user', component: UserComponent}
+      {path: 'user', component: UserComponent},
+      {path: 'report', component: ReportComponent}
     ]
   }
 ];

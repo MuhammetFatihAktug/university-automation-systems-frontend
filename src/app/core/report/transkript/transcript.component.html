@@ -1,0 +1,45 @@
+<div class="container mt-5 mb-5">
+  <div id="transcript">
+    <h2 class="mb-4 text-center">Öğrenci Transkripti</h2>
+    <div *ngIf="groupedTranscriptData">
+      <div class="mb-4">
+        <h5>Öğrenci Bilgileri</h5>
+        <p><strong>Adı Soyadı:</strong> {{ transcriptData?.student?.name }}</p>
+        <p><strong>Öğrenci No:</strong> {{ transcriptData?.student?.id }}</p>
+        <p><strong>T.C. Kimlik No:</strong> {{ transcriptData?.student?.tcNo }}</p>
+        <p><strong>Kayıt Tarihi:</strong> {{ transcriptData?.student?.enrollmentDate }}</p>
+        <p><strong>Kayıt Nedeni:</strong> {{ transcriptData?.student?.enrollmentReason }}</p>
+        <p><strong>Hazırlık Durumu:</strong> {{ transcriptData?.student?.prepStatus }}</p>
+      </div>
+
+      <div *ngFor="let semester of groupedTranscriptData | keyvalue" class="mb-4">
+        <h4 class="text-center mb-3">{{ semester.key }}</h4>
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead class="table-dark">
+            <tr>
+              <th>Ders Kodu</th>
+              <th>Ders Adı</th>
+              <th>Kredi</th>
+              <th>Ortalama</th>
+              <th>Harf Notu</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let course of semester.value">
+              <td>{{ course.course.courseCode }}</td>
+              <td>{{ course.course.name }}</td>
+              <td>{{ course.course.credits }}</td>
+              <td>{{ course.average }}</td>
+              <td>{{ course.letterGrade }}</td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <button class="btn btn-primary mt-4" (click)="printTranscript()">PDF Olarak İndir</button>
+    </div>
+  </div>
+</div>
